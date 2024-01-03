@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import background from "../../assets/bgb2.jpg";
 import { signUpUser } from "../../apis/Auth";
 import { toast } from "react-hot-toast";
+import { Circles } from "react-loader-spinner";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,7 @@ const Signup = () => {
     password: "",
   });
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +26,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
+      setIsLoading(true);
       await signUpUser(formData.email, formData.password, formData.name);
       toast.success("User registered successfully");
 
@@ -36,6 +39,7 @@ const Signup = () => {
     } catch (error) {
       toast.error(error.message);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -65,7 +69,11 @@ const Signup = () => {
         }}
       >
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <label htmlFor="password" style={{ color: "#666" }}>
             Name:
@@ -86,7 +94,11 @@ const Signup = () => {
           />
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <label htmlFor="password" style={{ color: "#666" }}>
             Email:
@@ -107,7 +119,11 @@ const Signup = () => {
           />
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <label htmlFor="password" style={{ color: "#666" }}>
             Password:
@@ -139,7 +155,13 @@ const Signup = () => {
             border: "none",
           }}
         >
-          Sign-up
+          {isLoading ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Circles height={20} width={20} color="white" />
+            </div>
+          ) : (
+            " Sign-up"
+          )}
         </button>
         <div style={{ fontSize: "var(--text-sm)" }}>
           <p>

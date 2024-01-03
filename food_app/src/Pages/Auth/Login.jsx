@@ -4,6 +4,7 @@ import background from "../../assets/xyz.jpg";
 import toast from "react-hot-toast";
 import { signinUser } from "../../apis/Auth";
 import AppContext from "../../Context/AppContext";
+import { Circles } from "react-loader-spinner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Login = () => {
   });
   const navigate = useNavigate();
   const { user, setUser } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,6 +34,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       const response = await signinUser(formData.email, formData.password);
       setFormData({
         email: "",
@@ -50,6 +53,7 @@ const Login = () => {
       } else {
         toast.error("Login failed");
       }
+      setIsLoading(false);
     } catch (error) {
       toast.error(error.message);
     }
@@ -82,7 +86,11 @@ const Login = () => {
         }}
       >
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <label htmlFor="password" style={{ color: "#666" }}>
             Email:
@@ -103,7 +111,11 @@ const Login = () => {
           />
         </div>
         <div
-          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
           <label htmlFor="password" style={{ color: "#666" }}>
             Password:
@@ -135,7 +147,13 @@ const Login = () => {
             border: "none",
           }}
         >
-          Log-in
+          {isLoading ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Circles height={20} width={20} color="white" />
+            </div>
+          ) : (
+            "Log-in"
+          )}
         </button>
         <div style={{ fontSize: "var(--text-sm)" }}>
           <p>
