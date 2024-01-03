@@ -1,14 +1,17 @@
 import { toast } from "react-hot-toast";
 export async function getAllRecipes() {
   try {
-    const response = await fetch("http://localhost:5001/recipes/all", {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      "https://create-recipe-app.onrender.com/recipes/all",
+      {
+        method: "GET",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("error in getting recipes");
@@ -23,15 +26,18 @@ export async function getAllRecipes() {
 }
 export async function createRecipe(recipeData) {
   try {
-    const response = await fetch("http://localhost:5001/recipes/create", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(recipeData),
-    });
+    const response = await fetch(
+      "https://create-recipe-app.onrender.com/recipes/create",
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(recipeData),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Failed to create recipe");
@@ -46,14 +52,17 @@ export async function createRecipe(recipeData) {
 }
 export async function deleteRecipe(id) {
   try {
-    const response = await fetch(`http://localhost:5001/recipes/delete/${id}`, {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://create-recipe-app.onrender.com/recipes/delete/${id}`,
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     if (!response.ok) {
       throw new Error("error in getting recipes");
@@ -68,15 +77,18 @@ export async function deleteRecipe(id) {
 }
 export async function updateRecipe(updateRecipe) {
   try {
-    const response = await fetch("http://localhost:5001/recipes/update", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updateRecipe),
-    });
+    const response = await fetch(
+      "https://create-recipe-app.onrender.com/recipes/update",
+      {
+        method: "POST",
+        mode: "cors",
+        cache: "no-cache",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateRecipe),
+      }
+    );
 
     if (!response.ok) {
       throw new Error("error in getting recipes");
