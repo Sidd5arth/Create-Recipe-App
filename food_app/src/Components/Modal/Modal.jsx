@@ -12,7 +12,8 @@ import { updateRecipe } from "../../apis/Recipes";
 
 const Modal = ({ setOpen, cardToEdit, setCardToEdit }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { user, setAllData, dimensions } = useContext(AppContext);
+  const { user, setAllData, dimensions, setFilteredData } =
+    useContext(AppContext);
   const { uploadFile, uploadResponse, setUploadResponse } = useFileUpload();
   const [smallScreen, setSmallScreen] = useState(dimensions.width < 600);
   const [desc, setDesc] = useState();
@@ -77,9 +78,9 @@ const Modal = ({ setOpen, cardToEdit, setCardToEdit }) => {
 
     if (cardToEdit && cardToEdit.id) {
       try {
+        setIsLoading(true);
         await updateRecipe({ id: cardToEdit.id, ...recData });
         toast.success("Recipe updated successfully");
-        setIsLoading(false);
       } catch (error) {
         toast.error("Error updating recipe");
       }
@@ -87,7 +88,6 @@ const Modal = ({ setOpen, cardToEdit, setCardToEdit }) => {
       try {
         await createRecipe(recData);
         toast.success("Recipe created successfully");
-        setIsLoading(false);
       } catch (error) {
         toast.error("Error creating recipe");
       }
@@ -95,10 +95,12 @@ const Modal = ({ setOpen, cardToEdit, setCardToEdit }) => {
     try {
       const data = await getAllRecipes();
       setAllData(data);
+      setFilteredData(data);
+      setOpen(false);
+      setIsLoading(false);
     } catch (error) {
       toast.error("server error please reload");
     }
-    setOpen(false);
   };
 
   const handleSubmit = async (e) => {
