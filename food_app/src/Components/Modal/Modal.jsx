@@ -101,6 +101,12 @@ const Modal = ({ setOpen, cardToEdit, setCardToEdit }) => {
     } catch (error) {
       toast.error("server error please reload");
     }
+    setTitle();
+    setIng();
+    setDesc();
+    setStepsArr([{ id: getuuid(), inputData: "" }]);
+    setUploadResponse();
+    setCardToEdit();
   };
 
   const handleSubmit = async (e) => {

@@ -6,6 +6,7 @@ import { deleteRecipe } from "../../apis/Recipes";
 import { toast } from "react-hot-toast";
 import AppContext from "../../Context/AppContext";
 import { getAllRecipes } from "../../apis/Recipes";
+import { Circles } from "react-loader-spinner";
 
 const RecipesCard = ({
   id,
@@ -19,7 +20,8 @@ const RecipesCard = ({
   setCardToEdit,
 }) => {
   const navigate = useNavigate();
-  const { setAllData } = useContext(AppContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const { setAllData, setFilteredData } = useContext(AppContext);
   const [openDelete, setOpenDelete] = useState(false);
 
   const handleRecipeClick = () => {
@@ -43,13 +45,16 @@ const RecipesCard = ({
 
   const handleDelete = async () => {
     try {
+      setIsLoading(true);
       await deleteRecipe(id);
       const data = await getAllRecipes();
       setAllData(data);
+      setFilteredData(data);
       toast.success("Recipe Deleted");
     } catch (error) {
       toast.error("Deletion Error");
     }
+    setIsLoading(false);
   };
   const handleEdit = async () => {
     window.scrollTo({
@@ -150,7 +155,13 @@ const RecipesCard = ({
               fontFamily: "poppins",
             }}
           >
-            {openDelete ? "Confirm" : "Delete"}
+            {isLoading ? (
+              <p style={{ display: "flex", justifyContent: "center" }}>
+                <Circles width={20} height={20} color="var(--yellow)" />
+              </p>
+            ) : (
+              <p>{openDelete ? "Confirm" : "Delete"}</p>
+            )}
           </button>
         </div>
       ) : (
