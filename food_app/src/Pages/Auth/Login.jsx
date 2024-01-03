@@ -53,10 +53,10 @@ const Login = () => {
       } else {
         toast.error("Login failed");
       }
-      setIsLoading(false);
     } catch (error) {
       toast.error(error.message);
     }
+    setIsLoading(false);
   };
 
   return (
