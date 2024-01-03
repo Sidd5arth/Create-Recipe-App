@@ -25,6 +25,10 @@ const Home = () => {
   useEffect(() => {
     if (!user) {
       navigate("/login");
+    } else {
+      window.scrollTo({
+        top: 0,
+      });
     }
   }, [user]);
 
