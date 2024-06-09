@@ -3,6 +3,7 @@ import AppContext from "./AppContext";
 import PropTypes from "prop-types";
 
 const AppContextProvider = ({ children }) => {
+  const [isSite, setIsSite] = useState(window.location.pathname === "/site");
   const [dimensions, setDimensions] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -10,6 +11,11 @@ const AppContextProvider = ({ children }) => {
   const [allData, setAllData] = useState();
   const [filteredData, setFilteredData] = useState();
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    setIsSite(window.location.pathname === "/site" || "/Site");
+  }, [window.location.pathname]);
+
   const changeDimensionsHandler = useCallback(() => {
     setDimensions({
       width: window.innerWidth,
@@ -27,6 +33,7 @@ const AppContextProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        isSite,
         dimensions,
         allData,
         user,

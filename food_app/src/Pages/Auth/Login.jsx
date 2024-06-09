@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/xyz.jpg";
 import toast from "react-hot-toast";
 import { signinUser } from "../../apis/Auth";
 import AppContext from "../../Context/AppContext";
 import { Circles } from "react-loader-spinner";
-
+const url =
+  "https://res.cloudinary.com/dmpir7wfy/image/upload/v1704534959/bzyxpy8tryztgzwpyfhp.jpg";
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
@@ -67,7 +67,7 @@ const Login = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url(${url})`,
         backgroundSize: "cover",
       }}
     >

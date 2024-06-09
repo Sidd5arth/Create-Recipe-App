@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 export async function signUpUser(email, password, name) {
   try {
     const response = await fetch(
-      "https://create-recipe-app.onrender.com/user/register",
+      `${process.env.REACT_APP_API_URL}/user/register`,
       {
         method: "POST",
         mode: "cors",
@@ -27,7 +27,7 @@ export async function signUpUser(email, password, name) {
 export async function signinUser(email, password) {
   try {
     const response = await fetch(
-      "https://create-recipe-app.onrender.com/user/login",
+      `${process.env.REACT_APP_API_URL}/user/login`,
       {
         method: "POST",
         mode: "cors",

@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 const defaultContextValue = {
+  isSite: true,
   dimensions: {
     width: window.innerWidth,
     height: window.innerHeight,

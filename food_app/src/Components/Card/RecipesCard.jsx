@@ -19,12 +19,18 @@ const RecipesCard = ({
   setOpen,
   setCardToEdit,
 }) => {
+  const { isSite, user } = useContext(AppContext);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { setAllData, setFilteredData } = useContext(AppContext);
   const [openDelete, setOpenDelete] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleRecipeClick = () => {
+    if (isSite && !user) {
+      toast.error("Sign-in to see recipe");
+      return;
+    }
     const ingredientsString = ingredients
       .map((item) => item.replace(/(?<!\w),/g, "|"))
       .join("|");
@@ -76,7 +82,10 @@ const RecipesCard = ({
     <>
       <div
         onClick={() => handleRecipeClick()}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         style={{
+          userSelect: "none",
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-start",
@@ -85,12 +94,13 @@ const RecipesCard = ({
           width: "100%",
           height: "290px",
           wordWrap: "break-word",
-          borderRadius: "1em",
+          borderRadius: "2em",
           border: "var(--outline)",
           padding: "1.5em",
           fontSize: "0.8em",
           backgroundColor: "white",
           cursor: "pointer",
+          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.14)",
         }}
       >
         <div style={{ width: "100%", height: "130px", overflow: "hidden" }}>
@@ -100,8 +110,10 @@ const RecipesCard = ({
             style={{
               width: "100%",
               height: "100%",
-              borderRadius: "1em",
               objectFit: "cover",
+              transition: "all 0.2s ease-in",
+              transform: isHovered ? "scale(1.1)" : "scale(1)",
+              borderRadius: "1em",
             }}
           />
         </div>

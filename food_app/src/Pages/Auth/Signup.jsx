@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/bgb2.jpg";
 import { signUpUser } from "../../apis/Auth";
 import { toast } from "react-hot-toast";
 import { Circles } from "react-loader-spinner";
+
+const url =
+  "https://res.cloudinary.com/dmpir7wfy/image/upload/v1704307487/recipeImg/grbnuo83sv6b2nq7v8xm.jpg";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +52,7 @@ const Signup = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        backgroundImage: `url(${background})`,
+        backgroundImage: `url(${url})`,
         backgroundSize: "cover",
       }}
     >

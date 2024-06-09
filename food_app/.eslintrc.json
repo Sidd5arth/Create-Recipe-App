@@ -19,11 +19,21 @@
       }
     }
   ],
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "rules": {
     "indent": ["error", 2],
     "linebreak-style": 0,
     "quotes": ["error", "double"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "semi": true,
+        "useTabs": false
+      }
+    ]
   }
 }

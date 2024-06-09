@@ -4,7 +4,15 @@ import Login from "../Pages/Auth/Login";
 import Signup from "../Pages/Auth/Signup";
 import Profile from "../Pages/Profile/Profile";
 import Details from "../Pages/Details/Details";
+import LandingPage from "../Pages/Website/LandingPage";
+
 export const Links = [
+  {
+    name: "Website",
+    path: "/site",
+    element: <LandingPage />,
+    showInNavigation: true,
+  },
   {
     name: "Home",
     path: "/",

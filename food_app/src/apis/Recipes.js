@@ -2,7 +2,7 @@ import { toast } from "react-hot-toast";
 export async function getAllRecipes() {
   try {
     const response = await fetch(
-      "https://create-recipe-app.onrender.com/recipes/all",
+      `${process.env.REACT_APP_API_URL}/recipes/all`,
       {
         method: "GET",
         mode: "cors",
@@ -12,7 +12,7 @@ export async function getAllRecipes() {
         },
       }
     );
-
+    console.log("hji");
     if (!response.ok) {
       throw new Error("error in getting recipes");
     }
@@ -27,7 +27,7 @@ export async function getAllRecipes() {
 export async function createRecipe(recipeData) {
   try {
     const response = await fetch(
-      "https://create-recipe-app.onrender.com/recipes/create",
+      `${process.env.REACT_APP_API_URL}/recipes/create`,
       {
         method: "POST",
         mode: "cors",
@@ -53,7 +53,7 @@ export async function createRecipe(recipeData) {
 export async function deleteRecipe(id) {
   try {
     const response = await fetch(
-      `https://create-recipe-app.onrender.com/recipes/delete/${id}`,
+      `${process.env.REACT_APP_API_URL}/recipes/delete/${id}`,
       {
         method: "POST",
         mode: "cors",
@@ -78,7 +78,7 @@ export async function deleteRecipe(id) {
 export async function updateRecipe(updateRecipe) {
   try {
     const response = await fetch(
-      "https://create-recipe-app.onrender.com/recipes/update",
+      `${process.env.REACT_APP_API_URL}/recipes/update`,
       {
         method: "POST",
         mode: "cors",

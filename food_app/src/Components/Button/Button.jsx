@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Button = ({ onClick, title, type, size, disabled }) => {
+const Button = ({ onClick, title, type, size, disabled, style }) => {
   return (
     <div>
       <button
@@ -9,6 +9,7 @@ const Button = ({ onClick, title, type, size, disabled }) => {
         disabled={disabled}
         type={type}
         style={{
+          ...style,
           backgroundColor: type === "outline" ? "white" : "#E12653",
           color: type === "outline" ? "#333" : "white",
           borderRadius: "2em",
@@ -25,6 +26,7 @@ const Button = ({ onClick, title, type, size, disabled }) => {
 };
 
 Button.propTypes = {
+  style: PropTypes.object,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   size: PropTypes.string.isRequired,

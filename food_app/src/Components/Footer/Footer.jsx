@@ -7,7 +7,7 @@ import {
 } from "react-icons/ri";
 import AppContext from "../../Context/AppContext";
 const Footer = () => {
-  const { dimensions } = useContext(AppContext);
+  const { dimensions, isSite } = useContext(AppContext);
   const [smallScreen, setSmallScreen] = useState(dimensions.width < 600);
   useEffect(() => {
     if (dimensions.width < 600) {
@@ -28,7 +28,7 @@ const Footer = () => {
         boxShadow: "var(--shadow)",
         padding: "2em 10em",
         zIndex: "100",
-        marginTop: "5em",
+        marginTop: isSite ? "" : "5em",
         gap: smallScreen ? "2em" : "30em",
         fontSize: "var(--text-sm)",
         minHeight: "40vh",

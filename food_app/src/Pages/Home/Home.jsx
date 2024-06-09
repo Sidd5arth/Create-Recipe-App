@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     if (!user) {
-      navigate("/login");
+      navigate("/site");
     } else {
       window.scrollTo({
         top: 0,
