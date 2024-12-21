@@ -53,7 +53,7 @@ const Navbar = () => {
         display: "flex",
         justifyContent: isSite ? "space-around" : "center",
         alignItems: "center",
-        backgroundColor: "rgba(255, 255, 255, 0.2)",
+        backgroundColor: !user ? "rgba(255, 255, 255, 0.2)" : "var(--yellow)",
         backdropFilter: "blur(10px)",
         gap: smallScreen ? "1em" : "12em",
         position: "fixed",
@@ -72,13 +72,15 @@ const Navbar = () => {
           cursor: "pointer",
           marginLeft: "2em",
         }}
-        onClick={() => navigate("/")}
+        onClick={() => {
+          !user ? navigate("/login") : navigate("/");
+        }}
       >
         <Forky width={30} height={30} />
         {smallScreen ? "" : <p>Forky</p>}
       </div>
 
-      {!isSite && (
+      {user && (
         <form
           style={{
             position: "relative",
@@ -169,9 +171,9 @@ const Navbar = () => {
         {isSite ? (
           <Hat width={30} height={30} />
         ) : (
-          <Profile width={30} height={30} />
+          user && <Profile width={30} height={30} />
         )}
-        {smallScreen ? "" : isSite ? <p>Explore</p> : <p>Profile</p>}
+        {smallScreen ? "" : isSite ? <p>Explore</p> : user && <p>Profile</p>}
       </div>
     </nav>
   );

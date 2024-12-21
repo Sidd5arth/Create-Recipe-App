@@ -100,7 +100,6 @@ const RecipesCard = ({
           fontSize: "0.8em",
           backgroundColor: "white",
           cursor: "pointer",
-          boxShadow: "0 10px 20px rgba(0, 0, 0, 0.14)",
         }}
       >
         <div style={{ width: "100%", height: "130px", overflow: "hidden" }}>

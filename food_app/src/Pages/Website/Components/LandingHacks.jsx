@@ -53,7 +53,7 @@ const LandingHacks = () => {
               backdropFilter: "blur(10px)",
               borderRadius: "1.2em",
               boxShadow: "0 10px 20px rgba(0, 0, 0, 0.14)",
-              fontSize: "14px",
+              fontSize: "12px",
               width: "70%",
               height: "30%",
             }}

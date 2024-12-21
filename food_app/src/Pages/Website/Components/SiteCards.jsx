@@ -15,8 +15,8 @@ const SiteCards = ({ svg, heading, desc }) => {
         background: "rgba(255, 255, 255, 0.6)",
         backdropFilter: "blur(10px)",
         borderRadius: "2em",
-        width: dimensions.width < 700 ? "100%" : "180px",
-        height: dimensions.width < 700 ? "90px" : "180px",
+        width: dimensions.width < 700 ? "100%" : "200px",
+        height: dimensions.width < 700 ? "90px" : "200px",
         boxShadow: "0 10px 20px rgba(0, 0, 0, 0.14)",
       }}
     >

@@ -29,14 +29,26 @@ const Profile = () => {
       setSmallScreen(false);
     }
   }, [dimensions]);
+
   useEffect(() => {
+    let timeout;
     if (!user) {
-      navigate("/site");
+      console.log("NO user found");
+      timeout = setTimeout(() => {
+        navigate("/site");
+      }, 2000);
     } else {
+      console.log("User found, clearing timeout");
       window.scrollTo({
         top: 0,
       });
     }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
+        console.log("Timeout cleared");
+      }
+    };
   }, [user, navigate]);
 
   useEffect(() => {
@@ -139,7 +151,11 @@ const Profile = () => {
               type="none"
               disabled={false}
               size={smallScreen ? "none" : "large"}
-              onClick={() => setUser(null)}
+              onClick={() => {
+                localStorage.removeItem("user");
+                setUser(null);
+                navigate("/site");
+              }}
             />
           </section>
           {userRecipes?.length === 0 ? (

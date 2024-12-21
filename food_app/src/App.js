@@ -6,12 +6,12 @@ import Routers from "./Common/Routers";
 
 const App = () => {
   return (
-    <AppContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AppContextProvider>
         <Routers />
         <ToasterProvider />
-      </BrowserRouter>
-    </AppContextProvider>
+      </AppContextProvider>
+    </BrowserRouter>
   );
 };
 

@@ -156,7 +156,7 @@ const AboveFooter = () => {
             flexDirection: dimensions.width < 700 ? "column" : "row",
             alignItems: "center",
             background: dimensions.width < 700 ? "transparent" : "white",
-            borderRadius: dimensions.width < 700 ? "1em" : "1.2em",
+            borderRadius: dimensions.width < 700 ? "1em" : "3em",
             boxShadow:
               dimensions.width < 700 ? "" : "0 10px 20px rgba(0, 0, 0, 0.14)",
             width: "100%",
@@ -177,7 +177,7 @@ const AboveFooter = () => {
               padding: "1em",
               width: "100%",
               height: "100%",
-              borderRadius: "1.2em",
+              borderRadius: "2em",
               border: "none",
               outline: "none",
               borderBottom: "1em",
@@ -197,6 +197,7 @@ const AboveFooter = () => {
               boxShadow: "0 10px 20px rgba(247, 22, 76, 0.24)",
               cursor: "pointer",
               marginTop: dimensions.width < 700 ? "1em" : "0",
+              fontSize: dimensions.width < 700 ? "small" : "medium",
             }}
           >
             Submit
